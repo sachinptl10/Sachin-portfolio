@@ -1,0 +1,8 @@
+# Robots.txt for Sachin Patel Portfolio
+# https://sachinptl10.github.io/Sachin-portfolio/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://sachinptl10.github.io/Sachin-portfolio/sitemap.xml
