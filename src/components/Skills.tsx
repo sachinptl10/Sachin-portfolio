@@ -12,13 +12,13 @@ export default function Skills() {
     {
       title: 'Backend',
       icon: Database,
-      skills: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL'],
+      skills: ['Node.js', 'Express', 'MongoDB'],
       span: 'md:col-span-1'
     },
     {
       title: 'Design & Media',
       icon: Brush,
-      skills: ['Figma / Design', 'Adobe Suite', 'Video Editing', 'Motion Design'],
+      skills: ['Figma / Design', 'Adobe Suite', 'Video Editing'],
       span: 'md:col-span-1'
     }
   ];
