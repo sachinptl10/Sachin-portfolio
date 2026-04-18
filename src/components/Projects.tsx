@@ -1,76 +1,130 @@
 import { motion } from 'motion/react';
-import { Award } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
+
+const projects = [
+  {
+    title: 'NovaCloud Dashboard',
+    description: 'A full-stack cloud management dashboard with real-time analytics, user management, and resource monitoring.',
+    tags: ['React', 'Node.js', 'MongoDB'],
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDgsK87mmHr_NZ2gB9EmFs0LiKAQ7-SKPHqZbE3RhuaI4m3XBYdtMqZXdTw4TkWxPOYnpLWaBZv0urIswOYTUBixXa3Gc0IWnJwZI3tuyug-PuGY6WPuAAuaEB4lUYFEnCnDxRMXuT95eZr-kfKME6UmzSNkODFaDmr_fbdxjfgAMqrU22JmKeX9IIKVzO-z9NMfE3lxI9T0t43K6CuseT-eHUfhHDA8bXwr64wPiDGBzONHpxs2U-w_fXFsdkCwVcC1E5HazfX4Ps',
+    featured: true,
+    live: '#',
+    github: '#',
+  },
+];
 
 export default function Projects() {
-  const certifications = [
-    { title: 'Google Cloud Professional', date: 'Dec 2023' },
-    { title: 'Meta Frontend Developer', date: 'Aug 2023' },
-    { title: 'AWS Certified Solutions Architect', date: 'May 2023' }
-  ];
-
   return (
-    <section className="py-32 bg-surface-container-low px-8">
+    <section id="projects" className="py-32 bg-surface-container-low px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Large Featured Project */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8"
+        >
+          <div className="space-y-4">
+            <h2 className="font-headline text-5xl font-extrabold text-white">
+              FEATURED <span className="text-outline">PROJECTS</span>
+            </h2>
+            <p className="text-on-surface-variant max-w-xl">
+              Hand-crafted digital experiences — from concept to deployment.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Featured Project — full width */}
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="lg:col-span-8 bg-surface-container rounded-lg overflow-hidden group"
+            transition={{ duration: 0.5 }}
+            className="group relative bg-surface-container rounded-2xl overflow-hidden"
           >
-            <div className="relative h-[400px]">
-              <img 
-                alt="Project One" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgsK87mmHr_NZ2gB9EmFs0LiKAQ7-SKPHqZbE3RhuaI4m3XBYdtMqZXdTw4TkWxPOYnpLWaBZv0urIswOYTUBixXa3Gc0IWnJwZI3tuyug-PuGY6WPuAAuaEB4lUYFEnCnDxRMXuT95eZr-kfKME6UmzSNkODFaDmr_fbdxjfgAMqrU22JmKeX9IIKVzO-z9NMfE3lxI9T0t43K6CuseT-eHUfhHDA8bXwr64wPiDGBzONHpxs2U-w_fXFsdkCwVcC1E5HazfX4Ps"
+            <div className="relative h-[480px]">
+              <img
+                alt={project.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                src={project.image}
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10">
-                <span className="text-primary font-headline text-xs tracking-widest uppercase mb-2">Featured Project</span>
-                <h3 className="text-white text-3xl font-bold font-headline mb-4">NovaCloud Dashboard</h3>
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-10">
+                <span className="text-primary font-headline text-xs tracking-widest uppercase mb-3">
+                  Featured Project
+                </span>
+                <h3 className="text-white text-4xl font-bold font-headline mb-4">
+                  {project.title}
+                </h3>
+                <p className="text-white/70 text-sm max-w-xl mb-6 leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-xs font-headline uppercase tracking-wider border border-white/20 text-white/80 rounded-full backdrop-blur-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Buttons */}
                 <div className="flex gap-4">
-                  <button className="bg-primary-container text-white px-6 py-2 text-xs font-headline uppercase tracking-widest hover:scale-95 transition-all">Case Study</button>
-                  <button className="border border-white/20 text-white px-6 py-2 text-xs font-headline uppercase tracking-widest hover:bg-white hover:text-black transition-all">Live Preview</button>
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-primary-container text-white px-6 py-2.5 text-xs font-headline uppercase tracking-widest hover:scale-95 transition-all rounded-sm"
+                  >
+                    <ExternalLink size={14} /> Live Preview
+                  </a>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 border border-white/20 text-white px-6 py-2.5 text-xs font-headline uppercase tracking-widest hover:bg-white hover:text-black transition-all rounded-sm"
+                  >
+                    <Github size={14} /> Source Code
+                  </a>
                 </div>
               </div>
             </div>
           </motion.div>
+        ))}
 
-          {/* Certifications Grid */}
-          <div className="lg:col-span-4 space-y-6">
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-background border border-outline-variant/30 p-8 rounded-lg"
-            >
-              <h4 className="text-white font-headline font-bold uppercase tracking-widest mb-6">Certifications</h4>
-              <ul className="space-y-6">
-                {certifications.map((cert, index) => (
-                  <li key={index} className="flex gap-4 items-start">
-                    <Award className="text-primary" size={24} />
-                    <div>
-                      <p className="text-white font-bold text-sm">{cert.title}</p>
-                      <p className="text-xs text-on-surface-variant">{cert.date}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-primary-container p-8 rounded-lg"
-            >
-              <h4 className="text-white font-headline font-bold uppercase tracking-widest mb-2">Available for Hire</h4>
-              <p className="text-white/80 text-sm mb-4">Looking for a Senior MERN Developer or UI/UX Designer for your next big thing?</p>
-              <a className="text-white font-bold border-b border-white pb-1 hover:border-transparent transition-all" href="#contact">Get in touch →</a>
-            </motion.div>
+        {/* Available for Hire card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-8 bg-primary-container p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div>
+            <h4 className="text-white font-headline font-bold uppercase tracking-widest mb-2 text-lg">
+              Available for Hire
+            </h4>
+            <p className="text-white/80 text-sm">
+              Looking for a Frontend Developer for your next big thing?
+            </p>
           </div>
-        </div>
+          <a
+            href="#contact"
+            className="flex-shrink-0 px-8 py-3 bg-white text-black font-headline text-xs uppercase tracking-widest font-bold hover:bg-white/90 transition-all rounded-sm"
+          >
+            Get in touch →
+          </a>
+        </motion.div>
       </div>
     </section>
   );

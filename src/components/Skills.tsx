@@ -26,7 +26,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-32 bg-surface-container-low">
       <div className="max-w-7xl mx-auto px-8">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -38,7 +38,7 @@ export default function Skills() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {categories.map((cat, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -56,7 +56,7 @@ export default function Skills() {
             </motion.div>
           ))}
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
